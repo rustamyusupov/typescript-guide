@@ -1,0 +1,11 @@
+{
+  "name": "maps",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "start": "parcel ./src/index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-rc.0"
+  }
+}
