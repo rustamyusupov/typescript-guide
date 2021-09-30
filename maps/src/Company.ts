@@ -1,11 +1,11 @@
 import faker from 'faker';
 
 export class Company {
-  name: String;
-  catchPhrase: String;
+  name: string;
+  catchPhrase: string;
   location: {
-    lat: Number;
-    lng: Number;
+    lat: number;
+    lng: number;
   };
 
   constructor() {

@@ -1,10 +1,10 @@
 import faker from 'faker';
 
 export class User {
-  name: String;
+  name: string;
   location: {
-    lat: Number;
-    lng: Number;
+    lat: number;
+    lng: number;
   };
 
   constructor() {
