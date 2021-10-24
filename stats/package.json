@@ -12,6 +12,7 @@
     "start": "concurrently npm:start:*"
   },
   "devDependencies": {
+    "@types/node": "^16.11.4",
     "concurrently": "^6.3.0",
     "nodemon": "^2.0.14"
   }
