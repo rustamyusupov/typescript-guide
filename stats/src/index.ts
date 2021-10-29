@@ -1,17 +1,8 @@
-import fs from 'fs';
+import { MatchReader } from './MatchReader';
+import { Summary } from './Summary';
 
-const matches = fs
-  .readFileSync('football.csv', { encoding: 'utf-8' })
-  .split('\n')
-  .map((row: string): string[] => row.split(','));
+const matchReader = MatchReader.fromCsv('football.csv');
+const summary = Summary.winsAnalysisWithConsoleReport('Man United');
 
-const manUnitedWins = matches.reduce(
-  (acc: number, cur: string[]): number =>
-    (cur[1] === 'Man United' && cur[5] === 'H') ||
-    (cur[2] === 'Man United' && cur[5] === 'A')
-      ? (acc += 1)
-      : acc,
-  0
-);
-
-console.log(`Man United won ${manUnitedWins} games`);
+matchReader.load();
+summary.bildAndPrintReport(matchReader.matches);
