@@ -1,0 +1,15 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rustam Yusupov",
+  "license": "ISC",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0"
+  }
+}
