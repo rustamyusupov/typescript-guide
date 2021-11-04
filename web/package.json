@@ -6,8 +6,12 @@
   "license": "ISC",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
+    "start:client": "parcel",
+    "start:db": "json-server -w db.json",
     "build": "parcel build"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
   },
   "devDependencies": {
     "parcel": "^2.0.0"
