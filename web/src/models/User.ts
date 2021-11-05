@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-
+import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
+import { Sync } from './Sync';
 
 interface UserProps {
   id?: number;
@@ -9,35 +9,13 @@ interface UserProps {
 }
 
 const baseUrl = 'http://localhost:3000/users';
+
 export class User {
-  events: Eventing = new Eventing();
+  public attributes: Attributes<UserProps>;
+  public events: Eventing = new Eventing();
+  public sync: Sync<UserProps> = new Sync<UserProps>(baseUrl);
 
-  constructor(private data: UserProps) {}
-
-  get(name: string): number | string {
-    return this.data?.[name];
-  }
-
-  set(update: UserProps): void {
-    Object.assign(this.data, update);
-  }
-
-  fetch(): void {
-    axios
-      .get(`${baseUrl}/${this.get('id')}`)
-      .then((response: AxiosResponse): void => this.set(response.data));
-  }
-
-  save(): void {
-    const params: AxiosRequestConfig = this.get('id')
-      ? {
-          method: 'put',
-          url: `${baseUrl}/${this.get('id')}`,
-        }
-      : { method: 'post', url: baseUrl };
-
-    axios({ ...params, data: this.data }).then(
-      (response: AxiosResponse): void => this.set(response.data)
-    );
+  constructor(attrs: UserProps) {
+    this.attributes = new Attributes<UserProps>(attrs);
   }
 }
