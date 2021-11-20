@@ -7,11 +7,11 @@ interface HasId {
 export class Sync<T extends HasId> {
   constructor(private baseUrl: string) {}
 
-  fetch(id: number): AxiosPromise {
+  fetch = (id: number): AxiosPromise => {
     return axios.get(`${this.baseUrl}/${id}`);
-  }
+  };
 
-  save(data: T): AxiosPromise {
+  save = (data: T): AxiosPromise => {
     const params: AxiosRequestConfig = data?.id
       ? {
           method: 'put',
@@ -20,5 +20,5 @@ export class Sync<T extends HasId> {
       : { method: 'post', url: this.baseUrl };
 
     return axios({ ...params, data: data });
-  }
+  };
 }
