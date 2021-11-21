@@ -4,7 +4,7 @@ interface HasId {
   id?: number;
 }
 
-export class Sync<T extends HasId> {
+export class APISync<T extends HasId> {
   constructor(private baseUrl: string) {}
 
   fetch = (id: number): AxiosPromise => {
