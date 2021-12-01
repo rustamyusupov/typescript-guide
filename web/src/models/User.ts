@@ -2,8 +2,9 @@ import { Modal } from './Modal';
 import { Attributes } from './Attributes';
 import { APISync } from './APISync';
 import { Eventing } from './Eventing';
+import { Collection } from './Collection';
 
-interface UserProps {
+export interface UserProps {
   id?: number;
   name?: string;
   age?: number;
@@ -18,5 +19,9 @@ export class User extends Modal<UserProps> {
       new APISync<UserProps>(baseUrl),
       new Eventing()
     );
+  }
+
+  static buildUserCollection(): Collection<User, UserProps> {
+    return new Collection<User, UserProps>(baseUrl, User.buildUser);
   }
 }
