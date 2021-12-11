@@ -5,7 +5,7 @@ export class Collection<T, K> {
   models: T[] = [];
   events: Eventing = new Eventing();
 
-  constructor(private baseUrl: string, public deserialize: (json: K) => T) {}
+  constructor(public baseUrl: string, public deserialize: (json: K) => T) {}
 
   get on() {
     return this.events.on;
@@ -17,9 +17,11 @@ export class Collection<T, K> {
 
   fetch(): void {
     axios.get(this.baseUrl).then((response: AxiosResponse) => {
-      this.models = response.data.map((user: K) => this.deserialize(user));
-    });
+      response.data.forEach((value: K) => {
+        this.models.push(this.deserialize(value));
+      });
 
-    this.trigger('change');
+      this.trigger('change');
+    });
   }
 }

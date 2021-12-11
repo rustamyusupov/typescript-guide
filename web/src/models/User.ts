@@ -1,4 +1,4 @@
-import { Modal } from './Modal';
+import { Model } from './Model';
 import { Attributes } from './Attributes';
 import { APISync } from './APISync';
 import { Eventing } from './Eventing';
@@ -12,7 +12,7 @@ export interface UserProps {
 
 const baseUrl = 'http://localhost:3000/users';
 
-export class User extends Modal<UserProps> {
+export class User extends Model<UserProps> {
   static buildUser(attrs: UserProps): User {
     return new User(
       new Attributes<UserProps>(attrs),
@@ -23,5 +23,11 @@ export class User extends Modal<UserProps> {
 
   static buildUserCollection(): Collection<User, UserProps> {
     return new Collection<User, UserProps>(baseUrl, User.buildUser);
+  }
+
+  setRandomAge(): void {
+    const age = Math.round(Math.random() * 100);
+
+    this.set({ age });
   }
 }

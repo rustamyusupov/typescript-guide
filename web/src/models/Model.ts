@@ -1,6 +1,6 @@
 import { AxiosPromise, AxiosResponse } from 'axios';
 
-interface ModalAttributes<T> {
+interface ModelAttributes<T> {
   get<K extends keyof T>(key: K): T[K];
   getAll(): T;
   set(value: T): void;
@@ -20,9 +20,9 @@ interface HasId {
   id?: number;
 }
 
-export class Modal<T extends HasId> {
+export class Model<T extends HasId> {
   constructor(
-    private attributes: ModalAttributes<T>,
+    private attributes: ModelAttributes<T>,
     private sync: Sync<T>,
     private events: Eventing
   ) {}
